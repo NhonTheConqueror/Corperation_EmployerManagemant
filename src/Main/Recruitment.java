@@ -10,11 +10,15 @@ public class Recruitment {
 	    private Map<Person, Position> HRlist;
 
 
-	    public Recruitment(ArrayList<Position> hiringPosition, Date startedDate, Date endDate, Map<Person, Position> HRlist) {
+	    public Recruitment(ArrayList<Position> hiringPosition, Date startedDate, Date endDate, ArrayList<Person> HRlist) {
 	        this.hiringPosition = hiringPosition;
 	        this.startedDate = startedDate;
 	        this.endDate = endDate;
-	        this.HRlist = HRlist;
+	        this.HRlist = new HashMap<>();
+	        
+	        for(Person hr: HRlist) {
+	        	this.HRlist.put(hr, null);
+	        }
 	    }
 
 	    //default methods
@@ -26,4 +30,11 @@ public class Recruitment {
 	    public void setEndDate(Date endDate) {this.endDate = endDate;}
 	    public Map<Person, Position> getHRlist() {return HRlist;}
 	    public void setHRlist(Map<Person, Position> HRlist) {this.HRlist = HRlist;}
+	    
+	    //Son
+	    public void addHR(Person hr, Position position) {
+	    	if(!HRlist.containsKey(hr)) {
+	    		HRlist.put(hr, position);
+	    	}
+	    }
 }
