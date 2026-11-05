@@ -14,7 +14,6 @@ public class Requirement {
 	private String heatlhReq; // bad || good
 	private String appearanceReq; //good looking || normal || ugly
     
-	private ArrayList<Person> potentalCandidates; // list of all candidates
     
     public Requirement(int Min_expReq, int Max_age, String heatlhReq, String appearanceReq) {
         this.interviewersList = new HashMap<>();
@@ -92,15 +91,15 @@ public class Requirement {
     	
     	return age && health && exp && appearance && skillCheck && certificateCheck && genderCheck;    	
 	}
-    //add the candidate to the list to check later; Nhon
-    public void addCandidate(Candidate candidate) {
+    
+    //Nhon
+    public void checkProfile(Candidate candidate) {
 		if(isQualified(candidate)) {
-			potentalCandidates.add(candidate);
+			System.out.println("Candidate " + candidate.getName() + " is qualified for the job.");
+			approvedCandidates.add(candidate);
+		} else {
+			System.out.println("Candidate " + candidate.getName() + " is not qualified for the job.");
 		}
 	}
     
-    //Start the hiring process; Nhon
-    public void Start() {
-    	
-    }
 }

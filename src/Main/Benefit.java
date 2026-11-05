@@ -3,15 +3,16 @@ import Other.*;
 import java.util.ArrayList;
 
 public class Benefit {
-    public ArrayList<String> describe;
-    public double Min_wage;
-    public double Max_wage;
+    private ArrayList<String> describe;
+    private double Min_wage;
+    private double Max_wage;
+    
     public Benefit() {
         this.describe = new ArrayList<>();
     }
 
-    public Benefit(double Min_wage, double Max_wage) {
-        this.describe = new ArrayList<>();
+    public Benefit(ArrayList<String> describe, double Min_wage, double Max_wage) {
+        this.describe = describe;
         this.Min_wage = Min_wage;
         this.Max_wage = Max_wage;
     }
@@ -40,5 +41,9 @@ public class Benefit {
         this.Max_wage = Max_wage;
     }
 
-
+    //Son
+    public void addDescribe(String description) {
+		this.describe.add(description);
+	}
+    
 }
