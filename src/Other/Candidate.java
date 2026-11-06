@@ -1,6 +1,7 @@
 package Other;
 import java.util.ArrayList;
 import Main.*;
+import java.util.Random;
 
 public class Candidate extends Person {
 	private String health;
@@ -8,11 +9,13 @@ public class Candidate extends Person {
     private ArrayList<Skill> skillList;
     private ArrayList<Certificate> certificateList;
     private int exp; //years unit
-    private String appliedPos;
-    private Date interviewDate;
-   
+    private Position appliedPos;
 
-    public Candidate(String name, String gender, Date birth, String health, String appearance, int exp, String appliedPos, Date interviewDate) {
+    private int pureLuck;
+
+    public Candidate(String name, String gender, Date birth, String health,
+    				String appearance, int exp, Position appliedPos)
+    {
         super(name, gender, birth);
         this.health = health;
         this.appearance = appearance;
@@ -20,7 +23,7 @@ public class Candidate extends Person {
         this.certificateList = new ArrayList<>();
         this.exp = exp;
         this.appliedPos = appliedPos;
-        this.interviewDate = interviewDate;
+        this.pureLuck = new Random().nextInt(3);
     }
 
     //default method
@@ -33,40 +36,20 @@ public class Candidate extends Person {
     public void setSkillList(ArrayList<Skill> skillList) {this.skillList = skillList;}
     public ArrayList<Certificate> getCertificateList() {return certificateList;}
     public void setCertificateList(ArrayList<Certificate> certificateList) {this.certificateList = certificateList;}
-    public String getAppliedPos() {return appliedPos;}
-    public void setAppliedPos(String appliedPos) {this.appliedPos = appliedPos;}
-    public Date getInterviewDate() {return interviewDate;}
-    public void setInterviewDate(Date interviewDate) {this.interviewDate = interviewDate;}
+    public Position getAppliedPos() {return appliedPos;}
+    public void setAppliedPos(Position appliedPos) {this.appliedPos = appliedPos;}
+    public int getPureLuck() {return this.pureLuck;}
     //////////////////////////////////////////////////////////////////////////////////////////
 
-    
-    //find out if the candidate matches the Certificate; Nhon
-	public boolean matchCertificate(Certificate certificate) {
-		for (Certificate c : certificateList) {
-			if(c.equals(certificate)) {
-				if(c.getDateGot()!=null) {return c.getDateGot().compareWith(certificate.getDateGot()) >= 0;}
-				else if(c.getStatus()!=null) {return c.getStatus().compareToIgnoreCase(certificate.getStatus()) == 0;}
-				else if(c.getScore()!=0) {return c.getScore() >= certificate.getScore();}
-				else if(c.isPassed()) {return c.isPassed() == certificate.isPassed();}
-			}
+	public static ArrayList<NewEmployee> toNewEmployee(ArrayList<Candidate> approvedCandidates,
+			Position assignedHiringPosition) {
+		ArrayList<NewEmployee> newEmployees = new ArrayList<NewEmployee>();
+		for(Candidate c: approvedCandidates) {
+			newEmployees.add(new NewEmployee(NewEmployee.generateEID(c.getName(), c.getGender()), assignedHiringPosition, c.getName(), c.getGender(), c.getBirth()));
 		}
-		return false;
+		return newEmployees;
 	}
 
-	public static boolean checkCertificates(ArrayList<Certificate> candidateCertificates, ArrayList<Certificate> certificateReq) {
-		for(Certificate req : certificateReq) {
-			boolean found = false;
-			for(Certificate c : candidateCertificates) {
-				if(c.getTitle().equalsIgnoreCase(req.getTitle())) {
-					if( !(c.equals(req)) ) return false;
-					found = true;
-					break;
-				}
-			}
-			if(!found) return false;
-		}
-		return true;
-	}
 
 
 }

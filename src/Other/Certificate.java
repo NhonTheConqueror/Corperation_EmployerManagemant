@@ -1,8 +1,9 @@
-package Main;
-import Other.*;
+package Other;
+
+import java.util.ArrayList;
 
 public class Certificate {
-	public String title;
+	private String title;
     public String specificName;
     private Date dateGot; //to Recruiters, dateGot is the date which they accept certificate validation, can't allow any date before dateGot
     private double score;
@@ -54,12 +55,39 @@ public class Certificate {
     public boolean equals(Object obj) {
 		if (obj == null || getClass() != obj.getClass()) return false;
 		Certificate that = (Certificate) obj;		
-		return title.equals(that.title) && specificName.equals(that.specificName);
+		return title.equals(that.title);
 	}
-    
+    //Son
+    public boolean equalToSpecific(Certificate that) {	
+    	return this.specificName.equals(that.specificName);
+    }
+
     //find out if the candidate matches the Certificate; Nhon
-    public boolean isSatify(Candidate candidate) {
-    	return candidate.matchCertificate(this);
+	public static boolean isPassedCertificate(ArrayList<Certificate> candidateReqList, ArrayList<Certificate> certificateList) {
+		for(Certificate cert: certificateList) {
+			boolean metCert = false;
+			for (Certificate candidateCert : candidateReqList) {
+				if(candidateCert.equals(cert)) {
+					if(candidateCert.getDateGot()!=null) {metCert = candidateCert.getDateGot().compareWith(cert.getDateGot()) >= 0;}
+					if(candidateCert.getStatus()!=null) {metCert = candidateCert.getStatus().compareToIgnoreCase(cert.getStatus()) == 0;}
+					if(candidateCert.getScore()!=0) {metCert = candidateCert.getScore() >= cert.getScore();}
+					if(candidateCert.isPassed()) {metCert = candidateCert.isPassed() == cert.isPassed();}
+				}
+			}
+			if(!metCert) return false;
+		}
+		return true;
 	}
+
+	
+	//find out the university name of the candidate; Nhon
+	public static String findUniversityName(ArrayList<Certificate> certificateList) {
+		for(Certificate cert: certificateList) {
+			if(cert.getTitle().equalsIgnoreCase("university")) return cert.getSpecificName();
+		}
+		//would never happen because the candidate must have a university certificate to graduate and get a job, but just in case, return null
+		return null;
+	}
+     
 
 }

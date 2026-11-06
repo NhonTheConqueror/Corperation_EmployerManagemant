@@ -1,40 +1,62 @@
 package Main;
-import Other.*;
 import java.util.ArrayList;
 import java.util.Map;
+
+import Other.*;
+
 import java.util.HashMap;
-public class Recruitment {
-	  private ArrayList<Position> hiringPosition;
-	    private Date startedDate;
-	    private Date endDate;
-	    private Map<Person, Position> HRlist;
+
+public class Recruitment{
+    private ArrayList<Position> hiringPosition;
+    private Date startedDate;
+    private Date endDate;
+    
+    //private ArrayList<Candidate> candidates;
+    private HashMap<Position, ArrayList<NewEmployee>> newEmployees;
+    
+    /*/
+     * constructor
+     */
+    public Recruitment(ArrayList<Position> hiringPosition,
+						Date startedDate, Date endDate)
+    {
+    	this.hiringPosition = hiringPosition;
+		this.startedDate = startedDate;
+		this.endDate = endDate;
+		
+		for(Position p: hiringPosition) {
+			newEmployees.put(p, new ArrayList<NewEmployee>());
+		}
+		
+		this.newEmployees = new HashMap<>();
+    }
 
 
-	    public Recruitment(ArrayList<Position> hiringPosition, Date startedDate, Date endDate, ArrayList<Person> HRlist) {
-	        this.hiringPosition = hiringPosition;
-	        this.startedDate = startedDate;
-	        this.endDate = endDate;
-	        this.HRlist = new HashMap<>();
-	        
-	        for(Person hr: HRlist) {
-	        	this.HRlist.put(hr, null);
-	        }
-	    }
-
-	    //default methods
-	    public ArrayList<Position> getHiringPosition() {return hiringPosition;}
-	    public void setHiringPosition(ArrayList<Position> hiringPosition) {this.hiringPosition = hiringPosition;}
-	    public Date getStartedDate() {return startedDate;}
-	    public void setStartedDate(Date startedDate) {this.startedDate = startedDate;}
-	    public Date getEndDate() {return endDate;}
-	    public void setEndDate(Date endDate) {this.endDate = endDate;}
-	    public Map<Person, Position> getHRlist() {return HRlist;}
-	    public void setHRlist(Map<Person, Position> HRlist) {this.HRlist = HRlist;}
-	    
-	    //Son
-	    public void addHR(Person hr, Position position) {
-	    	if(!HRlist.containsKey(hr)) {
-	    		HRlist.put(hr, position);
-	    	}
-	    }
+    //default methods
+    public ArrayList<Position> getHiringPosition() {return hiringPosition;}
+    public void setHiringPosition(ArrayList<Position> hiringPosition) {this.hiringPosition = hiringPosition;}
+    public Date getStartedDate() {return startedDate;}
+    public void setStartedDate(Date startedDate) {this.startedDate = startedDate;}
+    public Date getEndDate() {return endDate;}
+    public void setEndDate(Date endDate) {this.endDate = endDate;}
+    
+    // Getters and Setters for ApprovedCandidates
+    public HashMap<Position, ArrayList<NewEmployee>> getNewEmployees() {return newEmployees;}
+    public void setNewEmployees(HashMap<Position, ArrayList<Candidate>> newE) {
+    	this.newEmployees = newEmployees;
+    }
+ //_________________________________________________________________
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+

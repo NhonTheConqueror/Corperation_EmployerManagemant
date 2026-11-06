@@ -1,12 +1,23 @@
-package Main;
-import Other.*;
+package Other;
 
-public class Position {
+import Main.Requirement;
+
+public class Position {	
 	private String posName;
 	private int maxQuantity;
 	private Requirement requirment;
 	private JD jobDescription;
 	private Benefit benefit;
+	
+	private int difficultyLevel; //the higher diff level means the more HR employees needed
+	
+	/*/
+	 * constructor for new employee
+	 */
+	public Position(String posName, Benefit benefit) {
+		this.posName = posName;
+		this.benefit = benefit;
+	}
 	
 	public Position(String posName, int maxQuantity, Requirement requirment, JD jobDescription, Benefit benefit) {
 	    this.posName = posName;
@@ -28,6 +39,4 @@ public class Position {
 	public Benefit getBenefit() {return benefit;}
 	public void setBenefit(Benefit benefit) {this.benefit = benefit;}
 	
-	
-
 }

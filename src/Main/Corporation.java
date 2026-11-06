@@ -1,5 +1,4 @@
 package Main;
-import Other.*;
 import java.util.ArrayList;
 
 public class Corporation {

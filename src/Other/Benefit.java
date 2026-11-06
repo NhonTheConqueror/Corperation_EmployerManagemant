@@ -1,5 +1,4 @@
-package Main;
-import Other.*;
+package Other;
 import java.util.ArrayList;
 
 public class Benefit {

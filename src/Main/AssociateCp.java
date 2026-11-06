@@ -1,32 +1,30 @@
 package Main;
-import Other.*;
+import java.util.PriorityQueue;
 import java.util.TreeMap;
+
+import Other.Date;
 
 public class AssociateCp extends Company {
 	private double parentShares;
     private TreeMap<Company, Double> partnerShares;	
     
-    public AssociateCp() {
-        this.partnerShares = new TreeMap<>();
-    }
-
-    public AssociateCp(String taxCode, String name, String field, Date foundingDate, double parentShares) {
-        super(taxCode, name, field, foundingDate);
-        this.parentShares = parentShares;
-        this.partnerShares = new TreeMap<>();
-    }
-
-    public double getParentShares() {
-        return parentShares;
-    }
-
-    public void setParentShares(double parentShares) {
-        this.parentShares = parentShares;
-    }
-
-    public TreeMap<Company, Double> getPartnerShares() {
-        return partnerShares;
-    }
+    /*/
+     * constructor
+     */
+    public AssociateCp(String taxCode, String name, String field, Date foundingDate,
+    		PriorityQueue<Recruitment> recruimentPlans, int totalNewEmployees, HR_department hrDepartment,
+    		double parentShares, TreeMap<Company, Double> partnerShares)
+    {
+    	super(taxCode, name, field, foundingDate,recruimentPlans, totalNewEmployees, hrDepartment);
+		this.parentShares = parentShares;
+		this.partnerShares = (partnerShares != null) ? new TreeMap<>(partnerShares) : new TreeMap<>();
+	}
+//_________________________________________________________________________
+    
+    //default methods
+    public double getParentShares() {return parentShares;}
+    public void setParentShares(double parentShares) {this.parentShares = parentShares;}
+    public TreeMap<Company, Double> getPartnerShares() {return partnerShares;}
 
 
 }

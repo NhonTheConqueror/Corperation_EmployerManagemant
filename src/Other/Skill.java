@@ -1,7 +1,6 @@
-package Main;
+package Other;
 import java.util.ArrayList;
 import java.util.HashMap;
-import Other.*;
 
 public class Skill {
 	public String title;
