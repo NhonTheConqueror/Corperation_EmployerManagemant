@@ -11,6 +11,11 @@ public class HR_department {
 	
 	private Recruitment recruitmentTask;
 	
+	public HR_department(Company company) {
+		this.company = company;
+		this.staffs = new ArrayList<Recruiter>();
+	}
+	
 	public HR_department(Company company, ArrayList<Recruiter> staffs) {
 		this.company = company;
 		this.staffs = staffs;
@@ -23,24 +28,22 @@ public class HR_department {
 	public void setHead(Person head) {this.head = head;}
 	public void setStaffs(ArrayList<Recruiter> staffs) {this.staffs = staffs;}
 
-	
+	//Take the task from company; Nhon
 	public void takeTask(Recruitment task) {
 		this.recruitmentTask = task;
-		executing();
-	}
-	
-	private void executing() {
-		//assign the task to the recruiters / staffs
 		assignPositionsToStaff();
-		update();
 	}
 	
-	//AI
+	//assign the positions to the staffs; Nhon
 	public void assignPositionsToStaff() {
-        if (recruitmentTask == null || recruitmentTask.getHiringPosition() == null || recruitmentTask.getHiringPosition().isEmpty()) {
+		//exception handling: check if recruitmentTask or staffs is null or empty
+        if (recruitmentTask == null || recruitmentTask.getHiringPosition() == null
+        				|| recruitmentTask.getHiringPosition().isEmpty())
+        {
             System.out.println("Không có vị trí tuyển dụng nào để phân bổ.");
             return;
         }
+        //exception handling: check if there are no staffs in the HR department
         if (staffs == null || staffs.isEmpty()) {
             System.out.println("Không có nhân viên HR nào để giao việc.");
             return;
@@ -50,50 +53,29 @@ public class HR_department {
         int numPositions = positions.size();
         int numStaffs = staffs.size();
 
-        // Trường hợp 1: Số lượng vị trí bằng số lượng staff (1 - 1)
+        //case 1: staffs = positions
         if (numPositions == numStaffs) {
             for (int i = 0; i < numPositions; i++) {
                 staffs.get(i).setAssignedHiringPosition(positions.get(i));
             }
         } 
-        // Trường hợp 2: Số vị trí ít hơn số staff (P < S)
-        // Mỗi position có ít nhất 1 staff, các staff còn lại được ưu tiên gán cho position có độ khó cao hơn
+        // case 2: staffs > positions
         else if (numPositions < numStaffs) {
-            // Sắp xếp các position theo độ khó giảm dần (difficultyLevel)
-            ArrayList<Position> sortedPositions = new ArrayList<>(positions);
-            sortedPositions.sort((p1, p2) -> Integer.compare(p2.getDifficultyLevel(), p1.getDifficultyLevel()));
-
-            // Bước 1: Gán mỗi position cho 1 staff đầu tiên để đảm bảo vị trí nào cũng có người phụ trách
-            for (int i = 0; i < numPositions; i++) {
-                staffs.get(i).setAssignedHiringPosition(sortedPositions.get(i));
-            }
-
-            // Bước 2: Phân bổ các staff còn thừa xoay vòng cho các vị trí có độ khó cao hơn
-            for (int i = numPositions; i < numStaffs; i++) {
-                Position targetPos = sortedPositions.get((i - numPositions) % numPositions);
-                staffs.get(i).setAssignedHiringPosition(targetPos);
-            }
+        	//todo
         } 
-        // Trường hợp 3: Số vị trí nhiều hơn số staff (P > S)
-        // Chia xoay vòng (Round-Robin) để mỗi staff gán vị trí chính, và lưu danh sách mở rộng nếu cần
+        // case 3: staffs < positions
         else {
-            for (int i = 0; i < numPositions; i++) {
-                Recruiter assignedRecruiter = staffs.get(i % numStaffs);
-                Position pos = positions.get(i);
-
-                // Gán vị trí chính (nếu là vị trí đầu tiên recruiter nhận)
-                if (assignedRecruiter.getAssignedHiringPosition() == null) {
-                    assignedRecruiter.setAssignedHiringPosition(pos);
-                }
-                
-                // Nếu Recruiter hỗ trợ danh sách nhiều vị trí
-                assignedRecruiter.addAssignedPosition(pos); 
-            }
+        	//todo, too lazy now
         }
     }
-
-	private void update() {
-		
+	
+	//for the company to get all the new employees from the HR department; Nhon
+	public ArrayList<NewEmployee> getNewEmployees() {
+		ArrayList<NewEmployee> ans = new ArrayList<NewEmployee>();
+		for(Recruiter staff : staffs) {
+			ans.addAll(staff.getNewEmployees());
+		}
+		return ans;
 	}
 	
 }

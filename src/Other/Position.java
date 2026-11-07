@@ -9,7 +9,8 @@ public class Position {
 	private JD jobDescription;
 	private Benefit benefit;
 	
-	private int difficultyLevel; //the higher diff level means the more HR employees needed
+	// 1: hard - 3,4 HR; 2: medium - 2 HR; 3: easy - 1 HR
+	//private int difficultyLevel; //the higher diff level means the more HR employees needed
 	
 	/*/
 	 * constructor for new employee
