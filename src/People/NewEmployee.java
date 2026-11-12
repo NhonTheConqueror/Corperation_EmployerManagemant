@@ -25,8 +25,8 @@ public class NewEmployee extends Person{
 	public void setPosition(Position position) {this.position = position;}
 
 	public static int generateEID(String name, String gender) {
-		return Integer.parseInt(LocalDate.now().getMonthValue()
-			+ Integer.toString(name.hashCode()) + Integer.toString((gender.equals("male")? 0:1)));
+	    int hash = Math.abs(name.hashCode() % 100000); //tranh tran so
+	    return Integer.parseInt(LocalDate.now().getMonthValue() + "" + hash + (gender.equalsIgnoreCase("male") ? 0 : 1));
 	}
 
 

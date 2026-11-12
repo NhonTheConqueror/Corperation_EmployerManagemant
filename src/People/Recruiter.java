@@ -164,7 +164,7 @@ public class Recruiter extends Person{
 			terminating(removingID);
     	}
     	
-    	setNewEmployees(Candidate.toNewEmployee(this.approvedCandidates, pos));
+    	setNewEmployees(Candidate.toNewEmployee(this.approvedCandidates));
     	
     }
     

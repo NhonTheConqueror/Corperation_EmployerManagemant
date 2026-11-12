@@ -46,11 +46,10 @@ public class Candidate extends Person {
     public int getPureLuck() {return this.pureLuck;}
     //___________________________________________________________________________
 
-	public static ArrayList<NewEmployee> toNewEmployee(ArrayList<Candidate> approvedCandidates,
-			Position assignedHiringPosition) {
+	public static ArrayList<NewEmployee> toNewEmployee(ArrayList<Candidate> approvedCandidates) {
 		ArrayList<NewEmployee> newEmployees = new ArrayList<NewEmployee>();
 		for(Candidate c: approvedCandidates) {
-			newEmployees.add(new NewEmployee(NewEmployee.generateEID(c.getName(), c.getGender()), assignedHiringPosition, c.getName(), c.getGender(), c.getBirth()));
+			newEmployees.add(new NewEmployee(NewEmployee.generateEID(c.getName(), c.getGender()), c.getAppliedPos(), c.getName(), c.getGender(), c.getBirth()));
 		}
 		return newEmployees;
 	}
