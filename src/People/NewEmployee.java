@@ -1,6 +1,10 @@
-package Other;
+package People;
 
 import java.util.ArrayList;
+
+import Other.Date;
+import Other.Position;
+
 import java.time.LocalDate;
 
 public class NewEmployee extends Person{

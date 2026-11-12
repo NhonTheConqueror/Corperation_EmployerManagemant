@@ -1,8 +1,9 @@
-package Main;
+package Corp;
 import java.time.LocalDate;
 import java.util.PriorityQueue;
 
 import Other.Date;
+import Other.Recruitment;
 
 
 
@@ -68,6 +69,6 @@ public class Company implements Comparable<Recruitment>{
 	}
     
     public void setTaskForHR() {
-    	//To do
+    	hrDepartment.takeTask(this.recruimentPlans.peek());
     }
 }

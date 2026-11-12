@@ -1,10 +1,13 @@
-package Main;
+package Corp;
 import java.util.ArrayList;
 
 import Other.*;
+import People.NewEmployee;
+import People.Person;
+import People.Recruiter;
 
 public class HR_department {
-	private Person head;
+	private Person Manager;
 	
 	private Company company;
 	private ArrayList<Recruiter> staffs;
@@ -19,15 +22,16 @@ public class HR_department {
 	public HR_department(Company company, ArrayList<Recruiter> staffs) {
 		this.company = company;
 		this.staffs = staffs;
-		this.head = staffs.get(0);
+		this.Manager = staffs.get(0);
 	}
 
 	//default methods
-	public Person getHead() {return head;}
+	public Person getManager() {return Manager;}
 	public ArrayList<Recruiter> getStaffs() {return staffs;}
-	public void setHead(Person head) {this.head = head;}
+	public void setManager(Person manager) {this.Manager = manager;}
 	public void setStaffs(ArrayList<Recruiter> staffs) {this.staffs = staffs;}
-
+//_________________________________________________________________________________
+	
 	//Take the task from company; Nhon
 	public void takeTask(Recruitment task) {
 		this.recruitmentTask = task;

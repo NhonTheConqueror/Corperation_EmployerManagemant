@@ -1,7 +1,8 @@
-package Main;
+package Corp;
 import java.util.PriorityQueue;
 
 import Other.Date;
+import Other.Recruitment;
 
 import java.util.ArrayList;
 
@@ -21,11 +22,18 @@ public class JoinVentureCp extends Company {
                         ? new ArrayList<>(partners)
                         : new ArrayList<>();
     }
-//____________________________________________________________________
-
+    
     //default methods
     public ArrayList<Company> getPartners() {return partners;}
     public void setPartners(ArrayList<Company> partners) {this.partners = partners;}
+//____________________________________________________________________
+
+    //Son
+    public void addCompany(Company company) {
+		if (company != null && !partners.contains(company)) {
+			partners.add(company);
+		}
+	}
 
 
 }

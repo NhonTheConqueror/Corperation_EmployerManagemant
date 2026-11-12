@@ -1,4 +1,6 @@
-package Other;
+package People;
+
+import Other.Date;
 
 public class Person {
 	private String name;

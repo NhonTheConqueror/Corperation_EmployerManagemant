@@ -16,30 +16,15 @@ public class Benefit {
         this.Max_wage = Max_wage;
     }
 
-    public ArrayList<String> getDescribe() {
-        return describe;
-    }
-
-    public void setDescribe(ArrayList<String> describe) {
-        this.describe = describe;
-    }
-
-    public double getMin_wage() {
-        return Min_wage;
-    }
-
-    public void setMin_wage(double Min_wage) {
-        this.Min_wage = Min_wage;
-    }
-
-    public double getMax_wage() {
-        return Max_wage;
-    }
-
-    public void setMax_wage(double Max_wage) {
-        this.Max_wage = Max_wage;
-    }
-
+    
+    //default methods
+    public ArrayList<String> getDescribe() {return describe;}
+    public void setDescribe(ArrayList<String> describe) {this.describe = describe;}
+    public double getMin_wage() {return Min_wage;}
+    public void setMin_wage(double Min_wage) {this.Min_wage = Min_wage;}
+    public double getMax_wage() {return Max_wage;}
+    public void setMax_wage(double Max_wage) {this.Max_wage = Max_wage;}
+//_____________________________________________
     //Son
     public void addDescribe(String description) {
 		this.describe.add(description);

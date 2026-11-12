@@ -1,10 +1,8 @@
-package Main;
+package Other;
 import java.util.ArrayList;
 
-import Other.Candidate;
-import Other.Certificate;
-import Other.Recruiter;
-import Other.Skill;
+import People.Candidate;
+import People.Recruiter;
 
 public class Requirement {
     private ArrayList<Skill> skillsReq;
@@ -37,7 +35,7 @@ public class Requirement {
     public void setGenderReq(ArrayList<String> genderReq) {this.genderReq = genderReq;}
     public String getAppearanceReq() {return appearanceReq;}
     public void setAppearanceReq(String appearanceReq) {this.appearanceReq = appearanceReq;}
-    
+ //__________________________________________________________________________________________________________________   
     //Son
     public void addGenderReq(String gender) {
         genderReq.add(gender.toLowerCase());
@@ -46,7 +44,7 @@ public class Requirement {
     public void addSkillReq(Skill skill) {
         skillsReq.add(skill);
     }
-    //Son
+    //Nhon
     public void addCertificateReq(Certificate certificate) {
         certificateReq.add(certificate);
     }

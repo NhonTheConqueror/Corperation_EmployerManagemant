@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Certificate {
 	private String title;
-    public String specificName;
+    private String specificName;
     private Date dateGot; //to Recruiters, dateGot is the date which they accept certificate validation, can't allow any date before dateGot
     private double score;
     private String status;

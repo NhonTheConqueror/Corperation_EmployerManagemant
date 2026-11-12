@@ -29,6 +29,7 @@ public class Skill {
     public String getProficiencyLevel() {return proficiencyLevel;}
     public void setProficiencyLevel(String proficiencyLevel) {this.proficiencyLevel = proficiencyLevel;}
 
+//________________________________________________________________________________________
     
     @Override
     //to know if this skill(candidate's skill) is equal or better than the required skill; Nhon

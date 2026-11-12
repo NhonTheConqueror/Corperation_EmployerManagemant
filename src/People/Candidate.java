@@ -1,7 +1,12 @@
-package Other;
+package People;
 import java.util.ArrayList;
-import Main.*;
 import java.util.Random;
+
+import Corp.*;
+import Other.Certificate;
+import Other.Date;
+import Other.Position;
+import Other.Skill;
 
 public class Candidate extends Person {
 	private String health;
@@ -39,7 +44,7 @@ public class Candidate extends Person {
     public Position getAppliedPos() {return appliedPos;}
     public void setAppliedPos(Position appliedPos) {this.appliedPos = appliedPos;}
     public int getPureLuck() {return this.pureLuck;}
-    //////////////////////////////////////////////////////////////////////////////////////////
+    //___________________________________________________________________________
 
 	public static ArrayList<NewEmployee> toNewEmployee(ArrayList<Candidate> approvedCandidates,
 			Position assignedHiringPosition) {

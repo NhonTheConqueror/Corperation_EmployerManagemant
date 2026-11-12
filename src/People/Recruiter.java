@@ -1,10 +1,15 @@
-package Other;
-
-import Main.*;
+package People;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Random;
+
+import Corp.*;
+import Other.Certificate;
+import Other.Date;
+import Other.Position;
+import Other.Requirement;
+import Other.Skill;
 
 public class Recruiter extends Person{
 	

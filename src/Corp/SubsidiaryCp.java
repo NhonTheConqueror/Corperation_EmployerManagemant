@@ -1,8 +1,9 @@
-package Main;
+package Corp;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 
 import Other.Date;
+import Other.Recruitment;
 
 public class SubsidiaryCp extends Company{
 	private Company parentCp;

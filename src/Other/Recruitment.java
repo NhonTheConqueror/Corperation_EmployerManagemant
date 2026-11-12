@@ -1,8 +1,9 @@
-package Main;
+package Other;
 import java.util.ArrayList;
 import java.util.Map;
 
-import Other.*;
+import People.Candidate;
+import People.NewEmployee;
 
 import java.util.HashMap;
 
@@ -39,13 +40,14 @@ public class Recruitment{
     public void setStartedDate(Date startedDate) {this.startedDate = startedDate;}
     public Date getEndDate() {return endDate;}
     public void setEndDate(Date endDate) {this.endDate = endDate;}
-    
     // Getters and Setters for ApprovedCandidates
     public HashMap<Position, ArrayList<NewEmployee>> getNewEmployees() {return newEmployees;}
     public void setNewEmployees(HashMap<Position, ArrayList<Candidate>> newE) {
     	this.newEmployees = newEmployees;
     }
  //_________________________________________________________________
+    
+    
     
 }
 

@@ -1,7 +1,5 @@
 package Other;
 
-import Main.Requirement;
-
 public class Position {	
 	private String posName;
 	private int maxQuantity;
@@ -39,5 +37,8 @@ public class Position {
 	public void setJobDescription(JD jobDescription) {this.jobDescription = jobDescription;}
 	public Benefit getBenefit() {return benefit;}
 	public void setBenefit(Benefit benefit) {this.benefit = benefit;}
+//_________________________________________________________________________________
+	
+	
 	
 }
