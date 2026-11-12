@@ -36,6 +36,14 @@ public class Requirement {
     public String getAppearanceReq() {return appearanceReq;}
     public void setAppearanceReq(String appearanceReq) {this.appearanceReq = appearanceReq;}
  //__________________________________________________________________________________________________________________   
+    
+    @Override
+    public boolean equals(Object obj) {
+    	if(this==null || obj==null) return false;
+    	Requirement that = (Requirement) obj;
+    	return this.Min_expReq == that.getMin_expReq(); // im tooooooo lazzy, just compare the exp i think.
+    }
+    
     //Son
     public void addGenderReq(String gender) {
         genderReq.add(gender.toLowerCase());

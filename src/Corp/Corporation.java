@@ -1,12 +1,15 @@
 package Corp;
 import java.util.ArrayList;
 
+import People.NewEmployee;
+
 public class Corporation {
 	private String id;
     private String name;
     private ArrayList<Company> memberCompanies;
-    private int totalNewEmployees;
 	
+    private ArrayList<NewEmployee> newEmployeeList;
+    
 	public Corporation(String id, String name) {
 	    this.id = id;
 	    this.name = name;
@@ -22,13 +25,20 @@ public class Corporation {
 	public void setMemberCompanies(ArrayList<Company> memberCompanies) {
 	    this.memberCompanies = memberCompanies;
 	}
-	public int getTotalNewEmployees() {return totalNewEmployees;}
-	public void setTotalNewEmployees(int totalNewEmployees) {
-	    this.totalNewEmployees = totalNewEmployees;
+	public  ArrayList<NewEmployee> getNewEmployeeList(){
+		return this.newEmployeeList;
 	}
 //_______________________________________________________________________________
 	
-	
+
+	public void updateNewEmployees() {
+		
+		if(newEmployeeList == null) newEmployeeList = new ArrayList<NewEmployee>();
+		
+		for(Company c: memberCompanies) {
+			newEmployeeList.addAll(c.getNewEmployees());
+		}
+	}
 	
 }
 

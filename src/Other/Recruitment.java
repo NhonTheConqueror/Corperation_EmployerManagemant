@@ -7,13 +7,13 @@ import People.NewEmployee;
 
 import java.util.HashMap;
 
-public class Recruitment{
+public class Recruitment implements Comparable<Recruitment>{
     private ArrayList<Position> hiringPosition;
     private Date startedDate;
     private Date endDate;
     
     //private ArrayList<Candidate> candidates;
-    private HashMap<Position, ArrayList<NewEmployee>> newEmployees;
+    private ArrayList<NewEmployee> newEmployees;
     
     /*/
      * constructor
@@ -25,11 +25,7 @@ public class Recruitment{
 		this.startedDate = startedDate;
 		this.endDate = endDate;
 		
-		for(Position p: hiringPosition) {
-			newEmployees.put(p, new ArrayList<NewEmployee>());
-		}
-		
-		this.newEmployees = new HashMap<>();
+		this.newEmployees = new ArrayList<NewEmployee>();		
     }
 
 
@@ -40,13 +36,22 @@ public class Recruitment{
     public void setStartedDate(Date startedDate) {this.startedDate = startedDate;}
     public Date getEndDate() {return endDate;}
     public void setEndDate(Date endDate) {this.endDate = endDate;}
-    // Getters and Setters for ApprovedCandidates
-    public HashMap<Position, ArrayList<NewEmployee>> getNewEmployees() {return newEmployees;}
-    public void setNewEmployees(HashMap<Position, ArrayList<Candidate>> newE) {
-    	this.newEmployees = newEmployees;
+    //Getters and Setters for ApprovedCandidates; Nhon
+    public ArrayList<NewEmployee> getNewEmployees() {return newEmployees;}
+    public void setNewEmployees(ArrayList<NewEmployee> newE) {
+    	this.newEmployees = newE;
     }
  //_________________________________________________________________
     
+
+
+    //make the plans list sorted by nearest start date
+    @Override
+    public int compareTo(Recruitment that) {
+        if (that == null || that.getStartedDate() == null) return -1;
+        if (this.startedDate == null) return 1;
+        return -this.startedDate.compareWith(that.getStartedDate());
+    }
     
     
 }

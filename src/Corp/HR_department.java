@@ -52,25 +52,29 @@ public class HR_department {
             System.out.println("Không có nhân viên HR nào để giao việc.");
             return;
         }
-
+        
+        //Main code here
         ArrayList<Position> positions = recruitmentTask.getHiringPosition();
         int numPositions = positions.size();
         int numStaffs = staffs.size();
-
-        //case 1: staffs = positions
-        if (numPositions == numStaffs) {
+        // staffs > positions -> Lấy ngẫu nhiên đúng n HR để giao việc (tránh tuyển lố)
+        if (numStaffs > numPositions) {
+            ArrayList<Recruiter> shuffledStaffs = new ArrayList<>(this.staffs);
+            java.util.Collections.shuffle(shuffledStaffs); // Xáo trộn thứ tự list copy staffs (không làm đảo thứ tự list gốc)
+            
             for (int i = 0; i < numPositions; i++) {
-                staffs.get(i).setAssignedHiringPosition(positions.get(i));
+                shuffledStaffs.get(i).addPostion(positions.get(i));
             }
         } 
-        // case 2: staffs > positions
-        else if (numPositions < numStaffs) {
-        	//todo
-        } 
-        // case 3: staffs < positions
+        //staffs <= positions
+        // Duyệt hết positions và chia xoay vòng (%) -> Mỗi HR chắc chắn nhận ít nhất 1 position
+        // ví dụ HR [a,b,c] ; pos [1,2,3,4,5] -> a(1,4) ; b(2,5) ; c(3)
         else {
-        	//todo, too lazy now
+            for (int i = 0; i < numPositions; i++) {
+                this.staffs.get(i % numStaffs).addPostion(positions.get(i));
+            }
         }
+        
     }
 	
 	//for the company to get all the new employees from the HR department; Nhon
@@ -82,4 +86,14 @@ public class HR_department {
 		return ans;
 	}
 	
+	
+	//sync data; Nhon
+	public Recruitment updateNewEmployees() {
+		ArrayList<NewEmployee> newEList = new ArrayList<NewEmployee>();
+		for(Recruiter staff: this.staffs) {
+			newEList.addAll(staff.getNewEmployees());
+		}
+		this.recruitmentTask.setNewEmployees(newEList);
+		return this.recruitmentTask;
+	}
 }

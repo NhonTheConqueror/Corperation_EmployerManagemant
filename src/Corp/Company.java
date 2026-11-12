@@ -1,26 +1,27 @@
 package Corp;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.PriorityQueue;
 
 import Other.Date;
 import Other.Recruitment;
+import People.NewEmployee;
 
 
 
-public class Company implements Comparable<Recruitment>{
+public abstract class Company{
     protected String taxCode;
     protected String name;
     protected String field;
     protected Date foundingDate;
     protected PriorityQueue<Recruitment> recruimentPlans;
-    protected int totalNewEmployees;
     protected HR_department hrDepartment;
 
+    
 
-
-    public Company(String taxCode, String name, String field,
-                   Date foundingDate, PriorityQueue<Recruitment> recruimentPlans,
-                   int totalNewEmployees, HR_department hrDepartment) {
+    public Company(String taxCode, String name, String field, Date foundingDate,
+    		PriorityQueue<Recruitment> recruimentPlans, HR_department hrDepartment)
+    {
         this.taxCode = taxCode;
         this.name = name;
         this.field = field;
@@ -28,11 +29,9 @@ public class Company implements Comparable<Recruitment>{
         this.recruimentPlans = (recruimentPlans != null)
                                 ? recruimentPlans
                                 : new PriorityQueue<>();
-        this.totalNewEmployees = totalNewEmployees;
         this.hrDepartment = hrDepartment;
     }
     
-//_____________________________________________________________________
     //default methods
     public String getTaxCode() {return taxCode;}
     public void setTaxCode(String taxCode) {this.taxCode = taxCode;}
@@ -46,29 +45,23 @@ public class Company implements Comparable<Recruitment>{
     public void setRecruimentPlans(PriorityQueue<Recruitment> recruimentPlans) {
     	this.recruimentPlans = recruimentPlans;
     }
-    public int getTotalNewEmployees() {return totalNewEmployees;}
-    public void setTotalNewEmployees(int totalNewEmployees) {
-        this.totalNewEmployees = totalNewEmployees;
-    }
+//_____________________________________________________________________
 
 
-    //make the plans list sorted by nearest start date
-    @Override
-    public int compareTo(Recruitment that) {
-    	if (that == null) return -1;
-		return -this.recruimentPlans.peek().getStartedDate().compareWith(that.getStartedDate());
-	}
     
-    //
+    //Nhon
     public void setTaskForHR(Date date) {
     	if(this.recruimentPlans.peek().getStartedDate().equalTo(date)) {
 			//set task for HR
-    		hrDepartment.takeTask(this.recruimentPlans.peek());
+    		hrDepartment.takeTask(this.recruimentPlans.poll());
 		}
 		
 	}
     
     public void setTaskForHR() {
-    	hrDepartment.takeTask(this.recruimentPlans.peek());
+    	hrDepartment.takeTask(this.recruimentPlans.poll());
     }
+    
+    public abstract void updateNewEmployees();
+    public abstract ArrayList<NewEmployee> getNewEmployees();
 }
